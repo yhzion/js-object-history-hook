@@ -17,7 +17,7 @@ const history: Ref<HistoryItem[]> = ref([
   {
     title: 'Initial',
     time: Date.now(),
-    id: '0',
+    id: Date.now().toString(),
     undo: () => { },
     redo: () => { },
   },
@@ -38,7 +38,7 @@ const add = () => {
   };
   data.value[key] = value;
 
-  if (currentHistoryId.value !== history.value[history.value.length - 1].id) {
+  if (currentHistoryId.value !== history.value[history.value.length - 1].id && history.value.length > 1) {
     history.value = history.value.slice(0, history.value.findIndex((item) => item.id === currentHistoryId.value) + 1);
   }
 
